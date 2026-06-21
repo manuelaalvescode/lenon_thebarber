@@ -1,0 +1,238 @@
+/* ============================================================
+   LENON THE BARBER — Design Tokens
+   Arquivo: src/css/tokens.css
+   Empresa: [Sua marca aqui]
+   Cliente: Lenon Murillo (@lenon_thebarber)
+
+   COMO USAR:
+   Nunca escreva cores, fontes ou espaçamentos direto no CSS.
+   Sempre use variáveis daqui. Ex: color: var(--color-gold);
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+
+  /* ── CORES PRINCIPAIS ── */
+  --color-dark:       #1A0F0A;   /* fundo escuro */
+  --color-dark-2:     #0F0906;   /* fundo mais escuro (cards dark) */
+  --color-brown:      #3D2B1F;   /* marrom principal */
+  --color-brown-2:    #5C3D2E;   /* marrom médio */
+  --color-brown-3:    #7A5240;   /* marrom claro */
+  --color-tan:        #A67C5B;   /* caramelo */
+  --color-tan-light:  #C4956A;   /* caramelo claro */
+  --color-gold:       #B8860B;   /* dourado principal (CTAs) */
+  --color-gold-2:     #D4A017;   /* dourado mais brilhante (hovers) */
+  --color-cream:      #F5EFE0;   /* creme (texto em fundo dark) */
+  --color-cream-2:    #EDE4CF;   /* creme médio */
+  --color-cream-3:    #E0D4B8;   /* creme escuro (bordas, fundos) */
+  --color-off-white:  #FAF6EE;   /* fundo geral da página */
+  --color-gray-text:  #6B5B4E;   /* texto secundário em fundo claro */
+
+  /* ── TIPOGRAFIA ── */
+  --font-serif:  'Playfair Display', Georgia, serif;  /* títulos */
+  --font-sans:   'DM Sans', system-ui, sans-serif;    /* corpo */
+
+  /* ── TAMANHOS DE FONTE ── */
+  --text-xs:   0.65rem;   /* 10.4px — eyebrows, labels */
+  --text-sm:   0.8rem;    /* 12.8px — captions, meta */
+  --text-base: 0.95rem;   /* 15.2px — corpo de texto */
+  --text-md:   1.1rem;    /* 17.6px — serviços, destaques */
+  --text-lg:   1.4rem;    /* 22.4px — subtítulos */
+  --text-xl:   2rem;      /* 32px — títulos de seção base */
+  --text-2xl:  3.2rem;    /* 51px — títulos grandes */
+  --text-hero: clamp(2.8rem, 4.5vw, 5rem); /* hero responsivo */
+
+  /* ── ESPAÇAMENTOS ── */
+  --space-1:  0.25rem;   /* 4px */
+  --space-2:  0.5rem;    /* 8px */
+  --space-3:  0.75rem;   /* 12px */
+  --space-4:  1rem;      /* 16px */
+  --space-5:  1.5rem;    /* 24px */
+  --space-6:  2rem;      /* 32px */
+  --space-8:  3rem;      /* 48px */
+  --space-10: 4rem;      /* 64px */
+  --space-section: 7rem; /* padding vertical das seções */
+
+  /* ── LAYOUT ── */
+  --container-max:  1200px;
+  --container-pad:  6vw;         /* padding horizontal */
+  --container-pad-mobile: 5vw;
+
+  /* ── BORDAS ── */
+  --radius-sm:  2px;
+  --radius-md:  4px;
+  --radius-lg:  8px;
+  --radius-full: 9999px;
+
+  /* ── TRANSIÇÕES ── */
+  --transition-fast:   0.2s ease;
+  --transition-base:   0.3s ease;
+  --transition-slow:   0.5s ease;
+  --transition-reveal: 0.7s ease;
+
+  /* ── SOMBRAS ── */
+  /* Evitadas por design — site usa bordas, não sombras */
+
+  /* ── Z-INDEX ── */
+  --z-base:    1;
+  --z-overlay: 10;
+  --z-nav:     100;
+  --z-fixed:   200;   /* botão WhatsApp fixo */
+
+  /* ── WHATSAPP ── */
+  --wa-number:  "5522999931788";
+  --wa-message: "Olá, Lenon! Quero agendar um horário.";
+
+}
+
+/* ── RESET MÍNIMO ──
+   Só o essencial. Reset completo fica em reset.css */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-off-white);
+  color: var(--color-brown);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── UTILITÁRIOS ──
+   Classes reutilizáveis em qualquer seção */
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+.section-eyebrow {
+  font-size: var(--text-xs);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-tan);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--color-tan);
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-brown);
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--color-brown-3);
+}
+
+.section-title.light {
+  color: var(--color-cream);
+}
+
+.section-title.light em {
+  color: var(--color-gold-2);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-gold);
+  color: var(--color-dark);
+  padding: 0.9rem 2rem;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-base), transform var(--transition-fast);
+}
+
+.btn-primary:hover {
+  background: var(--color-gold-2);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-cream-2);
+  padding: 0.9rem 2rem;
+  font-size: var(--text-sm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(184, 134, 11, 0.35);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition-base), color var(--transition-base);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-gold-2);
+  color: var(--color-gold-2);
+}
+
+/* ── REVEAL ANIMATION ──
+   Adicione .reveal a qualquer elemento.
+   JS adiciona .in quando entra na tela. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--transition-reveal),
+    transform var(--transition-reveal);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── MEDIA QUERIES BASE ── */
+@media (max-width: 900px) {
+  :root {
+    --container-pad: var(--container-pad-mobile);
+    --space-section: 4rem;
+  }
+}

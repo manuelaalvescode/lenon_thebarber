@@ -1,0 +1,1059 @@
+/* ============================================================
+   LENON THE BARBER — sections.css
+   Arquivo: src/css/sections.css
+   Depende de: tokens.css, global.css (carregados antes)
+
+   ORDEM DAS SEÇÕES:
+   1. Hero
+   2. Strip (faixa animada)
+   3. About
+   4. Services + Tabela de preços
+   5. Portfolio
+   6. Testimonials
+   7. Booking (CTA final)
+
+   REGRA: cada seção começa com um comentário claro.
+   Nunca misture estilos de seções diferentes no mesmo bloco.
+   ============================================================ */
+
+
+/* ══════════════════════════════════════════════════════════
+   1. HERO
+   Primeira impressão — máximo impacto, mínimo tempo.
+   Grid de 2 colunas: texto à esquerda, imagem à direita.
+   ══════════════════════════════════════════════════════════ */
+
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--color-dark);
+  position: relative;
+  overflow: hidden;
+
+  /* Compensa o nav fixo */
+  padding-top: 0;
+}
+
+/* Textura de fundo com gradientes radiais sutis */
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(92, 61, 46, 0.3) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 15%, rgba(184, 134, 11, 0.07) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Coluna esquerda — texto ── */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 9rem var(--container-pad) 5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Eyebrow — localização e contexto */
+.hero-left .section-eyebrow {
+  margin-bottom: 1.8rem;
+}
+
+/* Título principal */
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-hero);
+  font-weight: 900;
+  line-height: 1.02;
+  color: var(--color-cream);
+  letter-spacing: -0.01em;
+}
+
+.hero-title em {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--color-gold-2);
+  line-height: 1.1;
+}
+
+/* Frase de posicionamento */
+.hero-quote {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: rgba(245, 239, 224, 0.55);
+  line-height: 1.75;
+  max-width: 380px;
+  margin: 1.8rem 0 2.8rem;
+  padding-left: 1.2rem;
+  border-left: 2px solid rgba(184, 134, 11, 0.35);
+}
+
+/* Grupo de botões */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Stats — números de autoridade */
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(245, 239, 224, 0.07);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--color-gold-2);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245, 239, 224, 0.35);
+  margin-top: 0.3rem;
+}
+
+/* ── Coluna direita — imagem ── */
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #1A0F0A 0%, #0F0906 100%);
+  color: rgba(184, 134, 11, 0.2);
+  font-size: var(--text-sm);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Quando tiver a foto real, usar esta estrutura:
+   <figure class="hero-figure">
+     <img src="./img/hero/lenon.webp" alt="Lenon Murillo, barbeiro">
+   </figure>
+*/
+.hero-figure {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.hero-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Gradiente sobre a foto para fundir com o lado esquerdo */
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--color-dark) 0%, transparent 25%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   2. STRIP
+   Faixa com serviços em loop animado.
+   Cria credibilidade passiva — cliente lê enquanto passa.
+   ══════════════════════════════════════════════════════════ */
+
+.strip {
+  background: var(--color-brown);
+  padding: 0.85rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  /* Respeita preferência do usuário por menos movimento */
+  animation: none;
+}
+
+.strip-track {
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+}
+
+/* Pausa no hover — detalhe de UX */
+.strip:hover .strip-track {
+  animation-play-state: paused;
+}
+
+.strip-track span {
+  display: inline-block;
+  color: rgba(245, 239, 224, 0.65);
+  font-size: var(--text-xs);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin: 0 2rem;
+}
+
+/* Separador decorativo entre itens */
+.strip-track span::before {
+  content: '✦';
+  color: var(--color-gold);
+  margin-right: 2rem;
+  opacity: 0.7;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Respeita quem tem sensibilidade a movimento */
+@media (prefers-reduced-motion: reduce) {
+  .strip-track {
+    animation: none;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   3. ABOUT
+   Conexão humana com o barbeiro.
+   Grid 2 colunas: imagem à esquerda, texto à direita.
+   ══════════════════════════════════════════════════════════ */
+
+#about {
+  background: var(--color-cream);
+  padding: var(--space-section) var(--container-pad);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  align-items: center;
+}
+
+/* ── Imagem ── */
+.about-image {
+  position: relative;
+}
+
+.about-image-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: var(--color-cream-3);
+  border: 1px solid rgba(92, 61, 46, 0.12);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-image-placeholder span {
+  font-family: var(--font-serif);
+  font-size: 6rem;
+  font-weight: 900;
+  color: rgba(92, 61, 46, 0.06);
+  user-select: none;
+}
+
+/* Quando tiver a foto real:
+   <figure class="about-figure">
+     <img src="./img/hero/lenon-trabalhando.webp"
+          alt="Lenon Murillo trabalhando na barbearia"
+          loading="lazy">
+   </figure>
+*/
+.about-figure {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: 0;
+}
+
+.about-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Selo circular — anos/volume de trabalho */
+.about-seal {
+  position: absolute;
+  top: 1.5rem;
+  right: -1.5rem;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--color-brown);
+  border: 3px solid var(--color-gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.seal-number {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--color-gold-2);
+  line-height: 1;
+  display: block;
+}
+
+.seal-text {
+  font-size: 0.52rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(245, 239, 224, 0.75);
+  line-height: 1.3;
+  display: block;
+  margin-top: 2px;
+}
+
+/* ── Texto ── */
+.about-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-text p {
+  font-size: var(--text-base);
+  color: var(--color-gray-text);
+  line-height: 1.8;
+  max-width: 480px;
+  margin-top: 1.4rem;
+}
+
+/* Versículo bíblico */
+.about-verse {
+  margin-top: 2rem;
+  padding: 1rem 1.2rem;
+  background: rgba(92, 61, 46, 0.05);
+  border-left: 3px solid var(--color-gold);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.about-verse p {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: 0.9rem !important;
+  color: var(--color-brown-2) !important;
+  margin-top: 0 !important;
+}
+
+.about-verse cite {
+  display: block;
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  color: var(--color-tan);
+  margin-top: 0.5rem;
+  font-style: normal;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   4. SERVICES + TABELA DE PREÇOS
+   Maior gatilho de agendamento — transparência converte.
+   Grid 3 colunas de cards + tabela completa embaixo.
+   ══════════════════════════════════════════════════════════ */
+
+#services {
+  background: var(--color-dark);
+  padding: var(--space-section) var(--container-pad);
+}
+
+/* ── Cabeçalho da seção ── */
+.services-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+/* ── Grid de cards ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  /* Borda entre os cards usando gap + background */
+  gap: 1px;
+  background: rgba(184, 134, 11, 0.1);
+  border: 1px solid rgba(184, 134, 11, 0.1);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* ── Card individual ── */
+.service-card {
+  background: #0F0906;
+  padding: 2.2rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--transition-base);
+}
+
+/* Linha dourada animada no bottom do card */
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-gold);
+  transition: width var(--transition-slow);
+}
+
+.service-card:hover {
+  background: #1A0F0A;
+}
+
+.service-card:hover::after {
+  width: 100%;
+}
+
+/* Card em destaque — carro-chefe */
+.service-card--highlight {
+  background: var(--color-brown) !important;
+  border: 1px solid rgba(184, 134, 11, 0.25) !important;
+}
+
+.service-card--highlight::after {
+  background: var(--color-gold-2);
+}
+
+/* Badge "Carro-chefe" */
+.service-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--color-gold);
+  color: var(--color-dark);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+/* Número decorativo do card */
+.service-num {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(184, 134, 11, 0.1);
+  line-height: 1;
+  margin-bottom: 1.2rem;
+  display: block;
+  user-select: none;
+}
+
+.service-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-cream);
+  margin-bottom: 0.5rem;
+}
+
+.service-desc {
+  font-size: var(--text-sm);
+  color: rgba(245, 239, 224, 0.4);
+  line-height: 1.65;
+  margin-bottom: 1.2rem;
+}
+
+.service-price {
+  font-size: 1.05rem;
+  color: var(--color-gold-2);
+  font-weight: 500;
+  font-family: var(--font-serif);
+}
+
+.service-duration {
+  font-size: 0.72rem;
+  color: rgba(245, 239, 224, 0.3);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  margin-left: 0.3rem;
+}
+
+/* ── Tabela de preços ── */
+#tabela {
+  margin-top: 5rem;
+  padding-top: 5rem;
+  border-top: 1px solid rgba(184, 134, 11, 0.1);
+}
+
+.table-wrapper {
+  margin-top: 2.5rem;
+  overflow-x: auto; /* scroll horizontal no mobile */
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(184, 134, 11, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 400px; /* evita compressão excessiva */
+}
+
+thead {
+  background: var(--color-brown);
+}
+
+thead th {
+  padding: 1rem 1.2rem;
+  text-align: left;
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-cream-2);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid rgba(184, 134, 11, 0.07);
+  transition: background var(--transition-fast);
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: rgba(92, 61, 46, 0.15);
+}
+
+tbody td {
+  padding: 0.9rem 1.2rem;
+  font-size: var(--text-sm);
+  color: rgba(245, 239, 224, 0.55);
+  vertical-align: middle;
+}
+
+/* Primeira coluna — nome do serviço */
+tbody td:first-child {
+  color: var(--color-cream-2);
+  font-weight: 400;
+}
+
+/* Segunda coluna — preço */
+tbody td:nth-child(2) {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--color-gold-2);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Linha de destaque — carro-chefe */
+.table-highlight {
+  background: rgba(92, 61, 46, 0.25) !important;
+}
+
+.table-highlight td:first-child {
+  color: var(--color-cream) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   5. PORTFOLIO
+   Prova visual — maior gatilho de decisão para esse público.
+   Grid assimétrico: item grande + grade de 5 menores.
+   ══════════════════════════════════════════════════════════ */
+
+#portfolio {
+  background: var(--color-cream-2);
+  padding: var(--space-section) var(--container-pad);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  gap: 4px;
+  margin-top: 3rem;
+}
+
+/* ── Item individual ── */
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-cream-3);
+  border: 1px solid rgba(92, 61, 46, 0.08);
+  cursor: pointer;
+}
+
+/* Proporção padrão dos itens */
+.portfolio-item {
+  aspect-ratio: 3 / 4;
+}
+
+/* Item 1 — destaque grande, ocupa 2 linhas */
+.portfolio-item:first-child {
+  grid-row: span 2;
+  aspect-ratio: auto; /* deixa o grid controlar a altura */
+}
+
+/* Item 3 — destaque horizontal, ocupa 2 colunas */
+.portfolio-item:nth-child(3) {
+  grid-column: span 2;
+  aspect-ratio: 16 / 9;
+}
+
+/* Imagem dentro do item */
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform var(--transition-slow);
+  display: block;
+}
+
+.portfolio-item:hover img {
+  transform: scale(1.04);
+}
+
+/* Overlay no hover */
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 15, 10, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.portfolio-item:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+/* Ícone no centro do overlay */
+.portfolio-overlay-icon {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-gold-2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold-2);
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+/* Placeholder enquanto as fotos não chegam */
+.portfolio-item--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(92, 61, 46, 0.2);
+  font-weight: 500;
+  min-height: 160px;
+}
+
+/* Nota de rodapé */
+.port-note {
+  margin-top: 1.5rem;
+  font-size: var(--text-sm);
+  color: var(--color-gray-text);
+  font-style: italic;
+  text-align: center;
+  opacity: 0.7;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   6. TESTIMONIALS
+   Prova social — quebra a última objeção do visitante.
+   3 cards com depoimento, estrelas e autor.
+   ══════════════════════════════════════════════════════════ */
+
+#testimonials {
+  background: var(--color-dark);
+  padding: var(--space-section) var(--container-pad);
+}
+
+/* ── Grid de depoimentos ── */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+/* ── Card de depoimento ── */
+.testimonial {
+  background: #0F0906;
+  border: 1px solid rgba(184, 134, 11, 0.1);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  position: relative;
+  margin: 0;
+  transition: border-color var(--transition-base);
+}
+
+.testimonial:hover {
+  border-color: rgba(184, 134, 11, 0.25);
+}
+
+/* Aspas decorativas */
+.testimonial::before {
+  content: '"';
+  position: absolute;
+  top: 0.5rem;
+  right: 1.2rem;
+  font-family: var(--font-serif);
+  font-size: 5rem;
+  color: rgba(184, 134, 11, 0.07);
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Estrelas */
+.stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 1rem;
+}
+
+.stars {
+  font-size: 0.8rem;
+  color: var(--color-gold-2);
+  letter-spacing: 2px;
+}
+
+/* Texto do depoimento */
+.testimonial blockquote {
+  margin: 0;
+}
+
+.testimonial blockquote p {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: rgba(245, 239, 224, 0.6);
+  line-height: 1.75;
+  font-style: italic;
+}
+
+/* Autor */
+.testimonial figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.author-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-brown);
+  border: 1px solid rgba(184, 134, 11, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--color-gold-2);
+  flex-shrink: 0;
+}
+
+.author-name {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-cream-2);
+  font-weight: 500;
+}
+
+.author-source {
+  display: block;
+  font-size: 0.7rem;
+  color: rgba(245, 239, 224, 0.3);
+  letter-spacing: 0.06em;
+  margin-top: 1px;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   7. BOOKING — CTA FINAL
+   Captura quem chegou até o fim — ainda não tinha agendado.
+   Fundo marrom, texto grande, dois botões, info de contato.
+   ══════════════════════════════════════════════════════════ */
+
+#booking {
+  background: var(--color-brown);
+  padding: var(--space-section) var(--container-pad);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Marca d'água tipográfica de fundo */
+#booking::before {
+  content: 'LTB';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-serif);
+  font-size: clamp(8rem, 22vw, 20rem);
+  font-weight: 900;
+  color: rgba(245, 239, 224, 0.03);
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Centraliza o conteúdo */
+.booking-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.booking-content .section-eyebrow {
+  justify-content: center;
+  color: rgba(184, 134, 11, 0.6);
+}
+
+.booking-content .section-eyebrow::before {
+  background: rgba(184, 134, 11, 0.4);
+}
+
+.booking-content .section-title {
+  color: var(--color-cream);
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.booking-content .section-title em {
+  color: var(--color-gold-2);
+}
+
+/* Texto abaixo do título */
+.booking-content > p {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: rgba(245, 239, 224, 0.55);
+  line-height: 1.8;
+  margin: 1.5rem auto 2.5rem;
+  font-style: italic;
+}
+
+/* Botões */
+.booking-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Info de contato abaixo dos botões */
+.booking-info {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(245, 239, 224, 0.08);
+}
+
+.info-label {
+  display: block;
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 239, 224, 0.3);
+  margin-bottom: 0.3rem;
+}
+
+.info-value {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-cream-2);
+  font-weight: 400;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   MOBILE — media queries de todas as seções
+   Lógica: o que muda em tela menor que 900px (tablet/mobile)
+   e menor que 560px (mobile pequeno)
+   ══════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+
+  /* Hero — empilha verticalmente */
+  #hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero-right {
+    order: -1; /* imagem fica em cima */
+    height: 55vw;
+    min-height: 260px;
+    max-height: 400px;
+  }
+
+  /* Tira o gradiente lateral que era para fundir com o texto */
+  .hero-right::before {
+    background: linear-gradient(to bottom, transparent 60%, var(--color-dark) 100%);
+  }
+
+  .hero-left {
+    padding: 3rem var(--container-pad) 5rem;
+  }
+
+  .hero-stats {
+    gap: 2rem;
+  }
+
+  /* About — empilha verticalmente */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-seal {
+    right: 0; /* não vaza para fora da tela */
+  }
+
+  .about-text p {
+    max-width: 100%;
+  }
+
+  /* Services — 2 colunas no tablet, header empilha */
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Portfolio — 2 colunas, sem layout assimétrico */
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .portfolio-item:first-child {
+    grid-row: span 1;
+    aspect-ratio: 3 / 4;
+  }
+
+  .portfolio-item:nth-child(3) {
+    grid-column: span 1;
+    aspect-ratio: 3 / 4;
+  }
+
+  /* Testimonials — 1 coluna */
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Booking info — menos gap */
+  .booking-info {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 560px) {
+
+  /* Hero */
+  .hero-title {
+    font-size: clamp(2.2rem, 8vw, 2.8rem);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    gap: 1.5rem;
+  }
+
+  /* Services — 1 coluna */
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Portfolio — 1 coluna */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-item:nth-child(3) {
+    aspect-ratio: 3 / 4;
+  }
+
+  /* Booking — botões empilham */
+  .booking-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .booking-buttons .btn-primary,
+  .booking-buttons .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Booking info — coluna única */
+  .booking-info {
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: left;
+  }
+}

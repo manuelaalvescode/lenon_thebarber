@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO básico -->
+  <title>Lenon The Barber — Um barbeiro simples, dedicado a cada cliente</title>
+  <meta name="description" content="Lenon Murillo, barbeiro em Nova Friburgo/RJ. Cortes, barba e cuidado completo. Agende pelo WhatsApp: (22) 99993-1788.">
+
+  <!-- Open Graph — como aparece no WhatsApp e Instagram -->
+  <meta property="og:title" content="Lenon The Barber">
+  <meta property="og:description" content="O estilo que você merece está aqui.">
+  <meta property="og:image" content="./img/icons/og-image.jpg"> <!-- 1200x630px -->
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./img/icons/favicon.png">
+
+  <!-- CSS — ordem importa: tokens primeiro, depois o resto -->
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/sections.css">
+  <link rel="stylesheet" href="./css/mobile.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       NAV — Fixa no topo durante o scroll
+       ══════════════════════════════════════════════ -->
+  <nav id="nav" aria-label="Navegação principal">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Ir para o início">
+        Lenon The Barber
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#services">Serviços</a></li>
+        <li><a href="#portfolio">Portfólio</a></li>
+        <li><a href="#testimonials">Clientes</a></li>
+        <li>
+          <a href="https://wa.me/5522999931788?text=Olá%2C+Lenon%21+Quero+agendar+um+horário."
+             class="nav-cta"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Agendar pelo WhatsApp">
+            Agendar
+          </a>
+        </li>
+      </ul>
+
+      <!-- Botão mobile (hamburguer) -->
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════
+         HERO — Primeira impressão. Máxima atenção.
+         ══════════════════════════════════════════════ -->
+    <section id="hero" aria-label="Apresentação">
+      <div class="hero-left">
+        <p class="section-eyebrow">Barbearia Clássica · Nova Friburgo / RJ</p>
+
+        <h1 class="hero-title">
+          Um barbeiro simples<br>
+          <em>que atende pessoas<br>especiais.</em>
+        </h1>
+
+        <p class="hero-quote">
+          Com a tesoura e a navalha, entrego autoestima e valor à sua aparência.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="https://wa.me/5522999931788?text=Olá%2C+Lenon%21+Quero+agendar+um+horário."
+             class="btn-primary"
+             target="_blank"
+             rel="noopener noreferrer">
+            Agendar pelo WhatsApp
+          </a>
+          <a href="#services" class="btn-secondary">
+            Ver serviços
+          </a>
+        </div>
+
+        <div class="hero-stats" aria-label="Números">
+          <div class="stat">
+            <span class="stat-number">+100</span>
+            <span class="stat-label">Cortes por mês</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">5.0</span>
+            <span class="stat-label">Avaliação Google</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">Seg–Sáb</span>
+            <span class="stat-label">8h às 20h</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <figure class="hero-figure">
+          <img src="./img/hero/lenon-hero.webp"
+               alt="Lenon Murillo finalizando corte na barbearia"
+               width="675" height="1200">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         STRIP — Faixa com serviços em loop
+         ══════════════════════════════════════════════ -->
+    <div class="strip" aria-hidden="true">
+      <div class="strip-track">
+        <span>Corte Completo</span>
+        <span>Barba</span>
+        <span>Sobrancelha</span>
+        <span>Pezinho</span>
+        <span>Barba + Pezinho</span>
+        <span>Depilação</span>
+        <span>Barbaterapia</span>
+        <span>Corte Simples</span>
+        <!-- Duplicado para o loop funcionar corretamente -->
+        <span>Corte Completo</span>
+        <span>Barba</span>
+        <span>Sobrancelha</span>
+        <span>Pezinho</span>
+        <span>Barba + Pezinho</span>
+        <span>Depilação</span>
+        <span>Barbaterapia</span>
+        <span>Corte Simples</span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         ABOUT — Conexão humana com o barbeiro
+         ══════════════════════════════════════════════ -->
+    <section id="about" aria-label="Sobre Lenon Murillo">
+      <div class="container about-grid">
+
+        <div class="about-image reveal">
+          <figure class="about-figure">
+            <img src="./img/about/lenon-about.webp"
+                 alt="Lenon Murillo trabalhando — mãos modelando cabelo cacheado"
+                 loading="lazy"
+                 width="562" height="1000">
+          </figure>
+          <div class="about-seal" aria-label="Mais de 100 cortes por mês">
+            <span class="seal-number">+100</span>
+            <span class="seal-text">cortes p/ mês</span>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <p class="section-eyebrow reveal">Sobre Lenon Murillo</p>
+          <h2 class="section-title reveal">
+            Mais que uma barbearia.<br>
+            <em>Uma experiência.</em>
+          </h2>
+          <p class="reveal">
+            Lenon Murillo é barbeiro com posicionamento claro: simplicidade no atendimento,
+            excelência na execução. Cada corte é tratado como único — porque cada pessoa
+            que senta na cadeira também é.
+          </p>
+          <p class="reveal">
+            Especialista em cortes clássicos modernos, barba a navalha e cuidados completos,
+            atendendo empresários, autônomos e todos que valorizam aparência como extensão
+            do caráter.
+          </p>
+
+          <blockquote class="about-verse reveal">
+            <p>"Tudo o que fizer, faça de todo o coração, como para o Senhor."</p>
+            <cite>— Colossenses 3:23</cite>
+          </blockquote>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SERVICES — O que oferece e quanto custa
+         ══════════════════════════════════════════════ -->
+    <section id="services" aria-label="Serviços e preços">
+      <div class="container">
+
+        <div class="services-header">
+          <div>
+            <p class="section-eyebrow reveal">Serviços</p>
+            <h2 class="section-title light reveal">
+              O que fazemos<br>
+              <em>com maestria</em>
+            </h2>
+          </div>
+          <a href="#tabela" class="btn-secondary reveal">Ver tabela completa</a>
+        </div>
+
+        <div class="services-grid" role="list">
+
+          <article class="service-card reveal" role="listitem">
+            <span class="service-num" aria-hidden="true">01</span>
+            <h3 class="service-name">Corte Simples</h3>
+            <p class="service-desc">Corte limpo e preciso, rápido e sem enrolação.</p>
+            <p class="service-price">R$ 25 <span class="service-duration">· 20 min</span></p>
+          </article>
+
+          <article class="service-card service-card--highlight reveal" role="listitem">
+            <span class="service-badge">Carro-chefe</span>
+            <span class="service-num" aria-hidden="true">02</span>
+            <h3 class="service-name">Corte + Barba + Sobrancelha</h3>
+            <p class="service-desc">O pacote completo — sai renovado do cabelo ao acabamento.</p>
+            <p class="service-price">R$ 80 <span class="service-duration">· 60 min</span></p>
+          </article>
+
+          <article class="service-card reveal" role="listitem">
+            <span class="service-num" aria-hidden="true">03</span>
+            <h3 class="service-name">Barbaterapia</h3>
+            <p class="service-desc">Ritual completo de cuidado com a barba.</p>
+            <p class="service-price">Consulte <span class="service-duration">· 30 min</span></p>
+          </article>
+
+          <article class="service-card reveal" role="listitem">
+            <span class="service-num" aria-hidden="true">04</span>
+            <h3 class="service-name">Corte Completo</h3>
+            <p class="service-desc">Corte com acabamento completo e finalização.</p>
+            <p class="service-price">R$ 40 <span class="service-duration">· 30 min</span></p>
+          </article>
+
+          <article class="service-card reveal" role="listitem">
+            <span class="service-num" aria-hidden="true">05</span>
+            <h3 class="service-name">Corte + Barba</h3>
+            <p class="service-desc">A dupla clássica: cabelo e barba na navalha.</p>
+            <p class="service-price">R$ 70 <span class="service-duration">· 50 min</span></p>
+          </article>
+
+          <article class="service-card reveal" role="listitem">
+            <span class="service-num" aria-hidden="true">06</span>
+            <h3 class="service-name">Barba + Pezinho</h3>
+            <p class="service-desc">Barba modelada com acabamento no pescoço.</p>
+            <p class="service-price">R$ 40 <span class="service-duration">· 30 min</span></p>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Tabela completa de preços -->
+      <div id="tabela" class="container">
+        <p class="section-eyebrow reveal">Tabela de preços</p>
+        <h2 class="section-title reveal">
+          Transparência<br><em>em cada serviço</em>
+        </h2>
+
+        <div class="table-wrapper reveal">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Serviço</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Duração</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Corte Simples</td><td>R$ 25</td><td>20 min</td></tr>
+              <tr><td>Corte Completo</td><td>R$ 40</td><td>30 min</td></tr>
+              <tr><td>Barba</td><td>R$ 30</td><td>20 min</td></tr>
+              <tr><td>Sobrancelha</td><td>R$ 10</td><td>10 min</td></tr>
+              <tr><td>Pezinho</td><td>R$ 10</td><td>10 min</td></tr>
+              <tr><td>Barba + Pezinho</td><td>R$ 40</td><td>30–40 min</td></tr>
+              <tr><td>Corte + Barba</td><td>R$ 70</td><td>50 min</td></tr>
+              <tr class="table-highlight">
+                <td>Corte + Barba + Sobrancelha ⭐</td>
+                <td>R$ 80</td>
+                <td>60 min</td>
+              </tr>
+              <tr><td>Depilação de Nariz ou Orelhas</td><td>R$ 15</td><td>10 min</td></tr>
+              <tr><td>Barbaterapia</td><td>Consulte</td><td>30 min</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         PORTFOLIO — Prova visual do trabalho
+         ══════════════════════════════════════════════ -->
+    <section id="portfolio" aria-label="Portfólio de trabalhos">
+      <div class="container">
+        <p class="section-eyebrow reveal">Portfólio</p>
+        <h2 class="section-title reveal">
+          Trabalhos que<br><em>falam por si</em>
+        </h2>
+      </div>
+
+      <div class="portfolio-grid" role="list" aria-label="Fotos dos trabalhos">
+        <!--
+          PLACEHOLDER — substituir por:
+          <figure class="portfolio-item reveal" role="listitem">
+            <img src="./img/portfolio/corte-01.webp"
+                 alt="Corte degradê com barba alinhada"
+                 loading="lazy"
+                 width="400" height="533">
+          </figure>
+        -->
+        <figure class="portfolio-item reveal" role="listitem">
+          <img src="./img/portfolio/portfolio-01.webp"
+               alt="Lenon finalizando corte com iluminação de estúdio — preto e branco"
+               loading="lazy" width="600" height="399">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-icon">+</div></div>
+        </figure>
+        <figure class="portfolio-item reveal" role="listitem">
+          <img src="./img/portfolio/portfolio-02.webp"
+               alt="Detalhe do trabalho — modelagem de cabelo cacheado"
+               loading="lazy" width="600" height="399">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-icon">+</div></div>
+        </figure>
+        <figure class="portfolio-item reveal" role="listitem">
+          <img src="./img/portfolio/portfolio-03.webp"
+               alt="Lenon trabalhando com cliente — finalizacao em detalhes"
+               loading="lazy" width="600" height="399">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-icon">+</div></div>
+        </figure>
+        <figure class="portfolio-item reveal" role="listitem">
+          <img src="./img/portfolio/portfolio-04.webp"
+               alt="Atendimento de cliente feminino — cuidado e precisão"
+               loading="lazy" width="600" height="399">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-icon">+</div></div>
+        </figure>
+        <figure class="portfolio-item reveal" role="listitem">
+          <img src="./img/portfolio/portfolio-05.webp"
+               alt="Corte artístico com desenho raspado — detalhe lateral"
+               loading="lazy" width="600" height="399">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-icon">+</div></div>
+        </figure>
+        <figure class="portfolio-item reveal" role="listitem">
+          <img src="./img/portfolio/portfolio-06.webp"
+               alt="Cliente satisfeita após corte — resultado final"
+               loading="lazy" width="600" height="399">
+          <div class="portfolio-overlay"><div class="portfolio-overlay-icon">+</div></div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         TESTIMONIALS — Prova social
+         ══════════════════════════════════════════════ -->
+    <section id="testimonials" aria-label="Avaliações de clientes">
+      <div class="container">
+        <p class="section-eyebrow reveal">Avaliações reais</p>
+        <h2 class="section-title light reveal">
+          O que dizem sobre<br><em>Lenon The Barber</em>
+        </h2>
+
+        <div class="testimonials-grid" role="list">
+
+          <figure class="testimonial reveal" role="listitem">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote>
+              <p>"Melhor atendimento que já tive. O Lenon tem um cuidado que vai além do corte — sai de lá com autoestima renovada."</p>
+            </blockquote>
+            <figcaption>
+              <span class="author-avatar" aria-hidden="true">MR</span>
+              <div>
+                <span class="author-name">Cliente fiel</span>
+                <span class="author-source">Google</span>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="testimonial reveal" role="listitem">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote>
+              <p>"Fui pela primeira vez e já sou cliente fixo. Ambiente tranquilo, atendimento impecável e o resultado superou o esperado."</p>
+            </blockquote>
+            <figcaption>
+              <span class="author-avatar" aria-hidden="true">GS</span>
+              <div>
+                <span class="author-name">Cliente fiel</span>
+                <span class="author-source">Google</span>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="testimonial reveal" role="listitem">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote>
+              <p>"Excelência e simplicidade juntas. Profissional diferenciado — você percebe que faz com cuidado e propósito."</p>
+            </blockquote>
+            <figcaption>
+              <span class="author-avatar" aria-hidden="true">FC</span>
+              <div>
+                <span class="author-name">Cliente fiel</span>
+                <span class="author-source">Instagram</span>
+              </div>
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         BOOKING — CTA final de conversão
+         ══════════════════════════════════════════════ -->
+    <section id="booking" aria-label="Agendamento">
+      <div class="container booking-content">
+        <p class="section-eyebrow reveal">Agendamento</p>
+        <h2 class="section-title light reveal">
+          Pronto para o seu<br><em>melhor visual?</em>
+        </h2>
+        <p class="reveal">
+          "O estilo que você merece está aqui."<br>
+          Seu corte a um clique de distância.
+        </p>
+
+        <div class="booking-buttons reveal">
+          <a href="https://wa.me/5522999931788?text=Olá%2C+Lenon%21+Quero+agendar+um+horário."
+             class="btn-primary"
+             target="_blank"
+             rel="noopener noreferrer">
+            Agendar pelo WhatsApp
+          </a>
+          <a href="https://www.instagram.com/lenon_thebarber"
+             class="btn-secondary"
+             target="_blank"
+             rel="noopener noreferrer">
+            Ver no Instagram
+          </a>
+        </div>
+
+        <div class="booking-info reveal" aria-label="Informações de contato">
+          <div>
+            <span class="info-label">WhatsApp</span>
+            <span class="info-value">(22) 99993-1788</span>
+          </div>
+          <div>
+            <span class="info-label">Horário</span>
+            <span class="info-value">Seg a Sáb — 8h às 20h</span>
+          </div>
+          <div>
+            <span class="info-label">Instagram</span>
+            <span class="info-value">@lenon_thebarber</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════ -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <p class="footer-logo">Lenon The Barber</p>
+        <p class="footer-tagline">"Um barbeiro simples que atende pessoas especiais."</p>
+      </div>
+
+      <nav aria-label="Serviços">
+        <h3>Serviços</h3>
+        <ul role="list">
+          <li><a href="#services">Corte Simples</a></li>
+          <li><a href="#services">Corte Completo</a></li>
+          <li><a href="#services">Barba</a></li>
+          <li><a href="#services">Corte + Barba</a></li>
+          <li><a href="#services">Barbaterapia</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Links rápidos">
+        <h3>Links</h3>
+        <ul role="list">
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
+          <li><a href="#testimonials">Avaliações</a></li>
+          <li><a href="https://www.instagram.com/lenon_thebarber" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://wa.me/5522999931788" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        </ul>
+      </nav>
+
+      <address>
+        <h3>Contato</h3>
+        <p>Nova Friburgo — RJ</p>
+        <p><a href="tel:+5522999931788">(22) 99993-1788</a></p>
+        <p>Segunda a Sábado</p>
+        <p>8h às 20h</p>
+      </address>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2025 Lenon The Barber · Todos os direitos reservados.</p>
+      <div class="social-links" aria-label="Redes sociais">
+        <a href="https://www.instagram.com/lenon_thebarber" target="_blank" rel="noopener noreferrer" aria-label="Instagram do Lenon The Barber">IG</a>
+        <a href="https://wa.me/5522999931788" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp do Lenon The Barber">WA</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════
+       BOTÃO WHATSAPP FIXO
+       Aparece no mobile após scrollar 300px
+       ══════════════════════════════════════════════ -->
+  <a href="https://wa.me/5522999931788?text=Olá%2C+Lenon%21+Quero+agendar+um+horário."
+     class="whatsapp-fixed"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Abrir WhatsApp para agendar"
+     id="whatsapp-btn">
+    WhatsApp
+  </a>
+
+  <!-- JS — sempre no final do body, nunca no head -->
+  <script src="./js/main.js"></script>
+  <script src="./js/whatsapp.js"></script>
+
+</body>
+</html>

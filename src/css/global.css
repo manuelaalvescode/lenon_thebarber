@@ -1,0 +1,472 @@
+/* ============================================================
+   LENON THE BARBER — global.css
+   Arquivo: src/css/global.css
+   Depende de: tokens.css (deve ser carregado antes)
+
+   O QUE FICA AQUI:
+   Elementos que aparecem em TODAS as páginas:
+   nav, footer, e utilitários globais.
+   Estilos de seções específicas ficam em sections.css.
+   ============================================================ */
+
+
+/* ══════════════════════════════════════════════════════════
+   NAV
+   ══════════════════════════════════════════════════════════ */
+
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+
+  /* Fundo inicial: escuro com transparência */
+  background: rgba(26, 15, 10, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari */
+
+  border-bottom: 1px solid rgba(184, 134, 11, 0.15);
+  transition:
+    background var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+/* Estado após scroll — JS adiciona essa classe */
+#nav.scrolled {
+  background: rgba(26, 15, 10, 0.98);
+  border-bottom-color: rgba(184, 134, 11, 0.25);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Wrapper interno do nav ── */
+.nav-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 1.2rem var(--container-pad);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/* ── Logo ── */
+.nav-logo {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-gold-2);
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  flex-shrink: 0;
+
+  transition: color var(--transition-fast);
+}
+
+.nav-logo:hover {
+  color: var(--color-tan-light);
+}
+
+/* ── Links de navegação ── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: rgba(245, 239, 224, 0.65);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 0.25rem 0;
+  position: relative;
+
+  transition: color var(--transition-base);
+}
+
+/* Linha animada embaixo do link no hover */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: width var(--transition-base);
+}
+
+.nav-links a:hover {
+  color: var(--color-cream);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ── Botão CTA no nav ── */
+.nav-cta {
+  background: var(--color-gold) !important;
+  color: var(--color-dark) !important;
+  padding: 0.55rem 1.4rem !important;
+  border-radius: var(--radius-sm);
+  font-weight: 500 !important;
+  letter-spacing: 0.1em !important;
+}
+
+.nav-cta::after {
+  /* Desativa a linha animada no botão */
+  display: none !important;
+}
+
+.nav-cta:hover {
+  background: var(--color-gold-2) !important;
+  color: var(--color-dark) !important;
+}
+
+/* ── Botão hamburguer — só mobile ── */
+.nav-toggle {
+  display: none; /* escondido no desktop */
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--color-cream-2);
+  border-radius: 2px;
+  transition:
+    transform var(--transition-base),
+    opacity var(--transition-base);
+}
+
+/* Estado aberto do hamburguer — JS adiciona .is-open */
+.nav-toggle.is-open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.nav-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.is-open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════════════════════ */
+
+footer {
+  background: var(--color-dark);
+  border-top: 1px solid rgba(184, 134, 11, 0.1);
+  padding: 5rem var(--container-pad) 2.5rem;
+}
+
+/* ── Grid superior do footer ── */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+
+  padding-bottom: 3rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(245, 239, 224, 0.06);
+}
+
+/* ── Coluna da marca ── */
+.footer-logo {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--color-gold-2);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.8rem;
+}
+
+.footer-tagline {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: rgba(245, 239, 224, 0.35);
+  line-height: 1.7;
+  max-width: 220px;
+  font-style: italic;
+}
+
+/* ── Colunas de navegação e contato ── */
+.footer-grid nav h3,
+.footer-grid address h3 {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-tan);
+  font-weight: 500;
+  margin-bottom: 1.4rem;
+}
+
+/* Lista de links do footer */
+.footer-grid nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-grid nav ul li a {
+  text-decoration: none;
+  color: rgba(245, 239, 224, 0.4);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  transition: color var(--transition-fast);
+}
+
+.footer-grid nav ul li a:hover {
+  color: var(--color-gold-2);
+}
+
+/* Endereço */
+.footer-grid address {
+  font-style: normal;
+}
+
+.footer-grid address p {
+  color: rgba(245, 239, 224, 0.4);
+  font-size: var(--text-sm);
+  line-height: 1.9;
+}
+
+.footer-grid address a {
+  color: rgba(245, 239, 224, 0.4);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-grid address a:hover {
+  color: var(--color-gold-2);
+}
+
+/* ── Barra inferior do footer ── */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-bottom p {
+  font-size: 0.72rem;
+  color: rgba(245, 239, 224, 0.2);
+  letter-spacing: 0.04em;
+}
+
+/* ── Links de redes sociais ── */
+.social-links {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(184, 134, 11, 0.2);
+  border-radius: 50%;
+  color: rgba(245, 239, 224, 0.4);
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+
+  transition:
+    border-color var(--transition-base),
+    color var(--transition-base);
+}
+
+.social-links a:hover {
+  border-color: var(--color-gold-2);
+  color: var(--color-gold-2);
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   BOTÃO WHATSAPP FIXO
+   Aparece no canto inferior direito após 300px de scroll.
+   JS controla a visibilidade com a classe .is-visible
+   ══════════════════════════════════════════════════════════ */
+
+.whatsapp-fixed {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: var(--z-fixed);
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  background: #25D366; /* verde oficial do WhatsApp */
+  color: #FFFFFF;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+
+  /* Começa invisível — JS adiciona .is-visible */
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+
+  transition:
+    opacity var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-fast);
+}
+
+.whatsapp-fixed.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.whatsapp-fixed:hover {
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Ícone do WhatsApp (SVG inline via CSS) */
+.whatsapp-fixed::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z'/%3E%3Cpath d='M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.534 5.857L.057 23.215a.75.75 0 0 0 .933.933l5.357-1.477A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.713 9.713 0 0 1-4.953-1.356l-.355-.21-3.683 1.015 1.015-3.683-.21-.355A9.713 9.713 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   MOBILE — media queries do nav e footer
+   ══════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+
+  /* ── NAV MOBILE ── */
+  .nav-toggle {
+    display: flex; /* aparece no mobile */
+  }
+
+  .nav-links {
+    /* Menu escondido por padrão no mobile */
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 15, 10, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    z-index: calc(var(--z-nav) - 1);
+  }
+
+  /* JS adiciona .is-open para abrir o menu */
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: var(--color-cream-2);
+  }
+
+  .nav-links a::after {
+    display: none;
+  }
+
+  .nav-cta {
+    padding: 0.8rem 2rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* ── FOOTER MOBILE ── */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1; /* ocupa as 2 colunas */
+  }
+
+  .footer-tagline {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+
+  footer {
+    padding: 4rem var(--container-pad) 2rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  /* WhatsApp fixo: só o ícone no mobile menor */
+  .whatsapp-fixed {
+    padding: 0.85rem;
+    border-radius: 50%;
+  }
+
+  /* Esconde o texto, mantém só o ícone */
+  .whatsapp-fixed {
+    font-size: 0;
+    padding: 0.9rem;
+  }
+
+  .whatsapp-fixed::before {
+    width: 22px;
+    height: 22px;
+  }
+}
